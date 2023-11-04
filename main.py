@@ -47,7 +47,6 @@ def tokenize(source_code):
                             if comment_lines > 0:
                                 line_no += comment_lines
                 source_code = source_code[len(value):]
-
                 break
         else:
             tokens.append(("Unexpected character", source_code[0], line_no))
