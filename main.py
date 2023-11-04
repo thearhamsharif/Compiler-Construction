@@ -1,43 +1,37 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
 import re
 
 # Define token types
 TOKEN_TYPES = [
-    ('KEYWORD', r'(Main|let|var|class|init|func|print|self)'),  # KEYWORDS
-    ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),                  # IDENTIFIERS E.G VARIBLES, METHODS, CLASS NAMES ETC
-    ('CONSTANT', r'[0-9]+(\.[0-9]*)?'),                         # DIGITS
-    ('DYNAMIC', r'[0-9]+'),
-    ('STRING', r'"[^"]*"'),                                     # "" STRING
-    ('COMMENT', r'//.*'),                                       # // COMMENT
-    ('OPEN_BRACE', r'{'),                                       # BODY START {
-    ('CLOSE_BRACE', r'}'),                                      # BODY END.}
-    ('OPEN_PAREN', R'\('),                                      # PARAMETER START (
-    ('CLOSE_PAREN', R'\)'),                                     # PARAMETER END (
-    ('COLON', r':'),                                            # STATEMENT END :
-    ('EQUALS', r'='),                                           # OPERATOR = ASSIGNS VALUE
-    ('DOT', r'\.'),                                             # FLOATING POINT OR METHOD ACCESS .
-    ('ADD', r'\+'),                                             # OPERATOR = ADDITION +
-    ('MINUS', r'\-'),                                           # OPERATOR = SUBTRACTION -
-    ('ASTERISK', r'\*'),                                        # OPERATOR = MULTIPLICATION *
-    ('SLASH', r'\/'),                                           # OPERATOR = DIVISION /
+    ('KEYWORD', r'(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|is_int|is_char|is_float|is_bool|is_str|replace|find|len)'),
+    ('DATATYPE', r'(int|float|char|str|bool)'),
+    ('CHAR', r'"[^"]{1}"|\'[^\']{1}\''),
+    ('STRING', r'"[^"]"|\'[^\']\''),
+    ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
+    ('FLOAT', r'\b[0-9]+\.[0-9]+\b'),
+    ('INT', r'\b[0-9]+\b'),
+    ('NULL', r'null'),
+    ('BOOLEAN', r'(true|false)'),
+    ('COMMENT', r'(//.|/\(.|\n)\/)'),
+    ('OPERATOR',
+     r',|=>|;|\(|\)|\{|\}|\:|\.|\+=|-=|\=|\+\+|--|&&|\|\||===|==|!==|!=|<=|>=|\\|\+|-|\|/|>|<|=')
 ]
 
 
 def tokenize(source_code):
     tokens = []
+    line_no = 1
     while source_code:
 
         for token_type, pattern in TOKEN_TYPES:
-            match = re.match(pattern, source_code)
+            match = re.match(pattern, source_code, re.IGNORECASE)
             if match:
                 value = match.group(0)
-                tokens.append((token_type, value))
+                if token_type == 'OPERATOR':
+                    tokens.append((value, value, line_no))
+                else:
+                    tokens.append((token_type, value, line_no))
                 source_code = source_code[len(value):].lstrip()
+
                 break
         else:
             raise SyntaxError(f"Unexpected character: {source_code[0]}")
@@ -45,12 +39,11 @@ def tokenize(source_code):
     return tokens
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    # Read source code from a file
+if _name_ == '_main_':
+
     with open("mySourceCode", "r") as file:
         source_code = file.read()
 
     tokens = tokenize(source_code)
-    for token_type, value in tokens:
-        print(f"Token Type: {token_type}, Value: {value}")
+    for token_type, value, line_no in tokens:
+        print([token_type, value, line_no])
