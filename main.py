@@ -50,7 +50,7 @@ def tokenize(source_code):
 
 if __name__ == '__main__':
 
-    with open("mySourceCode", "r") as file:
+    with open("mySourceCode.txt", "r") as file:
         source_code = file.read()
 
     tokens = tokenize(source_code)
