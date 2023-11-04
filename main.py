@@ -33,13 +33,17 @@ def tokenize(source_code):
                     elif token_type == 'OPERATOR':
                         tokens.append((value, value, line_no))
                     else:
+                        if token_type == 'COMMENT' or token_type == 'STRING':
+                            comment_str_lines = value.count('\n')
+                            if comment_str_lines > 0:
+                                line_no += comment_str_lines
                         tokens.append((token_type, value, line_no))
                 source_code = source_code[len(value):]
 
                 break
         else:
             tokens.append(("Unexpected character", source_code[0], line_no))
-            source_code = source_code[:]
+            source_code = source_code[1:]
 
     return tokens
 
