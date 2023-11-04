@@ -33,11 +33,19 @@ def tokenize(source_code):
                     elif token_type == 'OPERATOR':
                         tokens.append((value, value, line_no))
                     else:
-                        if token_type == 'COMMENT' or token_type == 'STRING':
-                            comment_str_lines = value.count('\n')
-                            if comment_str_lines > 0:
-                                line_no += comment_str_lines
+                        str_lines = 0
+                        comment_lines = 0
                         tokens.append((token_type, value, line_no))
+                        if token_type == 'COMMENT':
+                            print(value)
+                            str_lines = value.count('\n')
+                            if str_lines > 0:
+                                line_no += str_lines
+                        elif token_type == 'STRING':
+                            print(value)
+                            comment_lines = value.count('\\n')
+                            if comment_lines > 0:
+                                line_no += comment_lines
                 source_code = source_code[len(value):]
 
                 break
