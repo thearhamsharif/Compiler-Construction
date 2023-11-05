@@ -3,7 +3,8 @@ while(a.b.c<<<<<==78.65
 b+++=56.75ab7.11/*.56bcx.55.55.a5c
 char c="\nabc++=\\"abc\\\*/"abc"a=b=c
 str-.123: s='\\\'+'++'\n'+=35'\\;
-return a&&==@bc =main( c="\n\nabc++";! ='aaa' "bbb"
+return a&&==@bc =main( c="\n\nabc++";! ='aaa
+\n' "bbb"
 "\""
 "" '' "''" '""'
 %= %

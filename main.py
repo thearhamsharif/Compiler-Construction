@@ -38,12 +38,10 @@ def tokenize(source_code):
                         comment_lines = 0
                         tokens.append((token_type, value, line_no))
                         if token_type == 'COMMENT':
-                            print(value)
                             str_lines = value.count('\n')
                             if str_lines > 0:
                                 line_no += str_lines
                         elif token_type == 'STRING':
-                            print(value)
                             comment_lines = value.count('\\n')
                             if comment_lines > 0:
                                 line_no += comment_lines
