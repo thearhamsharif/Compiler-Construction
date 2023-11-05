@@ -3,10 +3,10 @@ import re
 # Define token types
 TOKEN_TYPES = [
     ('NEW_LINE', r'\n'),
-    ('NULL', r'null'),
-    ('BOOLEAN', r'(true|false)'),
-    ('KEYWORD', r'(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|is_int|is_char|is_float|is_bool|is_str|replace|find|len)'),
-    ('DATATYPE', r'(int|float|char|str|bool)'),
+    ('NULL', r'\b(null)\b'),
+    ('BOOLEAN', r'\b(true|false)\b'),
+    ('KEYWORD', r'\b(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|is_int|is_char|is_float|is_bool|is_str|replace|find|len)\b'),
+    ('DATATYPE', r'\b(int|float|char|str|bool)\b'),
     ('CHAR', r'"[^"]{1}"|\'[^\']{1}\''),
     ('STRING', r'"[^"]*"|\'[^\']*\''),
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
