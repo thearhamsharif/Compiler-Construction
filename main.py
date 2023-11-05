@@ -8,13 +8,14 @@ TOKEN_TYPES = [
     ('KEYWORD', r'\b(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|is_int|is_char|is_float|is_bool|is_str|replace|find|len|to_int|to_float|to_char|to_str|to_bool|to_fixed|ceil|round|floor)\b'),
     ('DATATYPE', r'\b(int|float|char|str|bool)\b'),
     ('CHAR', r'"[^"]{1}"|\'[^\']{1}\''),
-    ('STRING', r'"[^"]*"|\'[^\']*\''),
+    ('STRING', r'"[^"]*"'),
+    ('STRING', r'\'[^\']*\''),
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     ('FLOAT', r'[0-9]*\.[0-9]+'),
     ('INT', r'[0-9]+'),
     ('COMMENT', r'(//.*|/\*(.|\n)*\*/)'),
     ('OPERATOR',
-     r'\'|\"|\n| |,|=>|;|\(|\)|\{|\}|:|\.|\+=|-=|\*=|\+\+|--|&&|\|\||===|==|!==|!=|<=|>=|\*\*|\+|-|\*|/|>|<|=')
+     r'\'|\"|\n| |,|=>|;|\(|\)|\{|\}|:|\.|\+=|-=|\*=|\+\+|--|\%=|&&|\|\||===|==|!==|!=|<=|>=|\*\*|\+|-|\*|/|>|<|=|!|%')
 ]
 
 
