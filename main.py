@@ -5,7 +5,7 @@ TOKEN_TYPES = [
     ('NEW_LINE', r'\n'),
     ('NULL', r'\b(null)\b'),
     ('BOOLEAN', r'\b(true|false)\b'),
-    ('KEYWORD', r'\b(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|is_int|is_char|is_float|is_bool|is_str|replace|find|len|to_int|to_float|to_char|to_str|to_bool|to_fixed|ceil|round|floor)\b'),
+    ('KEYWORD', r'\b(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|replace|find|len|return|print|exit)\b'),
     ('DATATYPE', r'\b(int|float|char|str|bool)\b'),
     ('CHAR', r'"[^"]{1}"|\'[^\']{1}\''),
     ('STRING', r'"[^"]*"'),
@@ -15,7 +15,7 @@ TOKEN_TYPES = [
     ('INT', r'[0-9]+'),
     ('COMMENT', r'(//.*|/\*(.|\n)*\*/)'),
     ('OPERATOR',
-     r'\'|\"|\n| |,|=>|;|\(|\)|\{|\}|:|\.|\+=|-=|\*=|\+\+|--|\%=|&&|\|\||===|==|!==|!=|<=|>=|\*\*|\+|-|\*|/|>|<|=|!|%')
+     r'\'|\"|\n| |,|=>|;|\(|\)|\{|\}|:|\.|\+=|-=|\*=|\+\+|--|\%=|&&|\|\||===|==|!==|!=|<=|>=|\*\*|\+|-|\*|/|>|<|=|!|%|[|]')
 ]
 
 
