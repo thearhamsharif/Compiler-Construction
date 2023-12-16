@@ -54,8 +54,6 @@ def tokenize(source_code):
                     # elif token_type == 'OPERATOR':
                     #     tokens.append((value, value, line_no))
                     else:
-                        str_lines = 0
-                        comment_lines = 0
                         tokens.append((token_type, value, line_no))
                         if token_type == 'COMMENT':
                             str_lines = value.count('\n')
