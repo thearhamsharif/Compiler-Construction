@@ -3,19 +3,42 @@ import re
 # Define token types
 TOKEN_TYPES = [
     ('NEW_LINE', r'\n'),
-    ('NULL', r'\b(null)\b'),
-    ('BOOLEAN', r'\b(true|false)\b'),
-    ('KEYWORD', r'\b(Main|func|let|var|static|for|while|if|else if|elif|else|concat|pow|sqrt|class|init|deinit|public|protected|private|super|abstract|this|replace|find|len|return|print|exit)\b'),
-    ('DATATYPE', r'\b(int|float|char|str|bool)\b'),
-    ('CHAR', r'"[^"]{1}"|\'[^\']{1}\''),
-    ('STRING', r'"[^"]*"'),
-    ('STRING', r'\'[^\']*\''),
+    ('NULL_DATATYPE', r'\b(null)\b'),
+    ('BOOLEAN_DATATYPE', r'\b(true|false)\b'),
+    ('CHAR_DATATYPE', r'"[^"]{1}"|\'[^\']{1}\''),
+    ('STRING_DATATYPE', r'"[^"]*"'),
+    ('STRING_DATATYPE', r'\'[^\']*\''),
+    ('FLOAT_DATATYPE', r'[0-9]*\.[0-9]+'),
+    ('INT_DATATYPE', r'[0-9]+'),
+    ('MAIN_KEYWORDS', r'\b(Main)\b'),
+    ('FUNCTION_KEYWORDS', r'\b(func)\b'),
+    ('VARIABLE_KEYWORDS', r'\b(let|var)\b'),
+    ('STATIC_KEYWORD', r'\b(static)\b'),
+    ('LOOP_KEYWORDS', r'\b(for|while)\b'),
+    ('CONDITIONAL_KEYWORDS', r'\b(if|else\s*if|elif|else)\b'),
+    ('ARRAY_STRING_OPERATIONS', r'\b(concat|replace|find|len)\b'),
+    ('MATH_KEYWORDS', r'\b(pow|sqrt|range)\b'),
+    ('CLASS_KEYWORDS', r'\b(class|init|deinit|super|abstract|this|override)\b'),
+    ('ACCESS_MODIFIERS_KEYWORDS', r'\b(private|protected|public)\b'),
+    ('UTILITY_KEYWORDS', r'\b(return|print|exit)\b'),
+    ('DATATYPE_KEYWORDS', r'\b(int|float|char|str|bool)\b'),
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
-    ('FLOAT', r'[0-9]*\.[0-9]+'),
-    ('INT', r'[0-9]+'),
     ('COMMENT', r'(//.*|/\*(.|\n)*\*/)'),
-    ('OPERATOR',
-     r'\n| |,|=>|;|\(|\)|\{|\}|:|\.|\+=|-=|\*=|\+\+|--|\%=|&&|\|\||===|==|!==|!=|<=|>=|\*\*|\+|-|\*|/|>|<|=|!|%|[|]')
+    ('ARITHMETIC_OP', r'\+|-|\*|/|\*\*|\%'),
+    ('COMPARISON_OP', r'===|==|!==|!=|<=|>=|>|<'),
+    ('ASSIGNMENT_OP', r'\+=|-=|\*=|\%=|='),
+    ('INC_DEC_OP', r'\+\+|--'),
+    ('LOGICAL_OP', r'&&|\|\|'),
+    ('QUESTION_OP', r'?'),
+    ('COLON', r':'),
+    ('END_STATEMENT_OP', r';'),
+    ('COMMA_OP', r','),
+    ('DOT_OP', r'\.'),
+    ('PARENTHESIS_OP', r'\(|\)'),
+    ('BRACES_OP', r'\{|\}'),
+    ('BRACKETS_OP', r'\[|\]'),
+    ('NOT_OP', r'!'),
+    ('DICTIONARY_OP', r'=>')
 ]
 
 
@@ -31,8 +54,8 @@ def tokenize(source_code):
                 if value != ' ':
                     if token_type == 'NEW_LINE':
                         line_no += 1
-                    elif token_type == 'OPERATOR':
-                        tokens.append((value, value, line_no))
+                    # elif token_type == 'OPERATOR':
+                    #     tokens.append((value, value, line_no))
                     else:
                         str_lines = 0
                         comment_lines = 0
