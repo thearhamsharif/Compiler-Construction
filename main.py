@@ -37,7 +37,8 @@ TOKEN_TYPES = [
     ('BRACES_OP', r'\{|\}'),
     ('BRACKETS_OP', r'\[|\]'),
     ('NOT_OP', r'!'),
-    ('DICTIONARY_OP', r'=>')
+    ('DICTIONARY_OP', r'=>'),
+    ('SPACE', r' +')
 ]
 
 def tokenize(source_code):
