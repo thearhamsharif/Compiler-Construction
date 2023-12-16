@@ -6,8 +6,7 @@ TOKEN_TYPES = [
     ('NULL_DATATYPE', r'\b(null)\b'),
     ('BOOLEAN_DATATYPE', r'\b(true|false)\b'),
     ('CHAR_DATATYPE', r'"[^"]{1}"|\'[^\']{1}\''),
-    ('STRING_DATATYPE', r'"[^"]*"'),
-    ('STRING_DATATYPE', r'\'[^\']*\''),
+    ('STRING_DATATYPE', r'"[^"]*"|\'[^\']*\''),
     ('FLOAT_DATATYPE', r'[0-9]*\.[0-9]+'),
     ('INT_DATATYPE', r'[0-9]+'),
     ('MAIN_KEYWORDS', r'\b(Main)\b'),
@@ -24,13 +23,13 @@ TOKEN_TYPES = [
     ('DATATYPE_KEYWORDS', r'\b(int|float|char|str|bool)\b'),
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     ('COMMENT', r'(//.*|/\*(.|\n)*\*/)'),
-    ('ARITHMETIC_OP', r'\+|-|\*|/|\*\*|\%'),
+    ('ARITHMETIC_OP', r'\+|-|\*|/|\*\*|%'),
     ('COMPARISON_OP', r'===|==|!==|!=|<=|>=|>|<'),
     ('ASSIGNMENT_OP', r'\+=|-=|\*=|\%=|='),
     ('INC_DEC_OP', r'\+\+|--'),
     ('LOGICAL_OP', r'&&|\|\|'),
-    ('QUESTION_OP', r'?'),
-    ('COLON', r':'),
+    ('QUESTION_OP', r'\?'),
+    ('COLON_OP', r':'),
     ('END_STATEMENT_OP', r';'),
     ('COMMA_OP', r','),
     ('DOT_OP', r'\.'),
@@ -41,12 +40,10 @@ TOKEN_TYPES = [
     ('DICTIONARY_OP', r'=>')
 ]
 
-
 def tokenize(source_code):
     tokens = []
     line_no = 1
     while source_code:
-
         for token_type, pattern in TOKEN_TYPES:
             match = re.match(pattern, source_code, re.IGNORECASE)
             if match:
@@ -64,7 +61,7 @@ def tokenize(source_code):
                             str_lines = value.count('\n')
                             if str_lines > 0:
                                 line_no += str_lines
-                        elif token_type == 'STRING':
+                        elif token_type in ['STRING_DATATYPE']:
                             comment_lines = value.count('\\n')
                             if comment_lines > 0:
                                 line_no += comment_lines
@@ -73,15 +70,11 @@ def tokenize(source_code):
         else:
             tokens.append(("Unexpected character", source_code[0], line_no))
             source_code = source_code[1:]
-
     return tokens
 
-
 if __name__ == '__main__':
-
     with open("mySourceCode.txt", "r") as file:
         source_code = file.read()
-
     tokens = tokenize(source_code)
     for token_type, value, line_no in tokens:
         print([token_type, value, line_no])
