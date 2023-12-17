@@ -28,7 +28,6 @@ TOKEN_TYPES = [
     ('ASSIGNMENT_OP', r'\+=|-=|\*=|\%=|='),
     ('ARITHMETIC_OP', r'\+|-|\*|/|\*\*|%'),
     ('LOGICAL_OP', r'&&|\|\|'),
-    ('QUESTION_OP', r'\?'),
     ('COLON_OP', r':'),
     ('END_STATEMENT_OP', r';'),
     ('COMMA_OP', r','),
@@ -38,7 +37,7 @@ TOKEN_TYPES = [
     ('BRACKETS_OP', r'\[|\]'),
     ('NOT_OP', r'!'),
     ('DICTIONARY_OP', r'=>'),
-    ('SPACE', r' +')
+    ('SPACE', r' ')
 ]
 
 def tokenize(source_code):
