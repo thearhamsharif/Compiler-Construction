@@ -82,3 +82,70 @@ Function Declaration
 <type> -> int | str | ...... | bool		
 <block> -> {<body>}
 ------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+Context-Free Grammar (CFG) 	- OOP
+------------------------------------------------------------------------------		
+------------------------------------------------------------------------------	
+Class Declaration
+------------------------------------------------------------------------------			
+<class> -> class <identifier> <extend> <block> | abstract class <identifier> <block>
+
+<extend> -> E | : <identifier>
+<block> -> {<body>}
+------------------------------------------------------------------------------	
+Constructor
+------------------------------------------------------------------------------			
+<constructor> -> init(<params>) <block>
+
+<params> -> E | <data> <more_args>
+<more_args> E | , <params>
+<data> -> <variable_ass> | <identifier> | <constant>
+<block> -> {<body>}
+------------------------------------------------------------------------------	
+Destructor
+------------------------------------------------------------------------------			
+<destructor> -> deinit(<params>) <block>
+
+<params> -> E | <data> <more_args>
+<more_args> E | , <params>
+<data> -> <variable_ass> | <identifier> | <constant>
+<block> -> {<body>}
+------------------------------------------------------------------------------
+Function Declaration
+------------------------------------------------------------------------------
+<oop_func_dec> -> <other_var> <access_modeifiers> <datatype> func <identifier> ( <params> ) <block>
+
+<access_modeifiers> -> public | protected | private | E
+<other_var> -> static | override | abstract | E
+<params> -> E | <data> <more_args>
+<more_args> E | , <params>
+<data> -> <variable_ass> | <identifier> | <constant>
+<datatype> -> <type> | E
+<type> -> int | str | ...... | bool		
+<block> -> {<body>}
+------------------------------------------------------------------------------
+Object or Function Call or Variable Call
+------------------------------------------------------------------------------
+<oop_func_var_call> -> <object>.<identifier> ( <params> ) | <object>.<identifier>;
+
+<object> -> super | <objName_identifier>() | this
+<params> -> E | <data> <more_args>
+<more_args> E | , <params>
+<data> -> <term> | <expression>
+<term> -> <identifier> | <constant>
+------------------------------------------------------------------------------	
+Variable Declaration
+------------------------------------------------------------------------------			
+<variable_dec_oop> -> <other_var> <access_modeifiers> <keyword> <datatype> <identifier> <data> ;
+
+<access_modeifiers> -> public | protected | private | E
+<other_var> -> static | override | abstract | E
+<keyword> -> let | var
+<datatype> -> <type> | E
+<data> -> E | = <dataFull>
+<dataFull> -> <constant> | <func_call> | <expression> | <identifier>
+<type> -> int | str | ...... | bool		
+------------------------------------------------------------------------------	
