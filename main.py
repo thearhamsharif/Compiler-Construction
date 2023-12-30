@@ -24,7 +24,7 @@ TOKEN_TYPES = [
     ('UTILITY_KEYWORDS', r'\b(return|print|exit)\b'),
     ('DATATYPE_KEYWORDS', r'\b(int|float|char|str|bool)\b'),
     ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
-    ('COMMENT', r'(//.*|/\*(.|\n)*\*/)'),
+    ('COMMENT', r'(//.*|/\*(.|\n)*\*/|/\*(.|\n)*)'),
     ('COMPARISON_OP', r'===|==|!==|!=|<=|>=|>|<'),
     ('INC_DEC_OP', r'\+\+|--'),
     ('ASSIGNMENT_OP', r'\+=|-=|\*=|\%=|='),
@@ -55,15 +55,15 @@ def tokenize(source_code):
                 if value != ' ':
                     if token_type == 'NEW_LINE':
                         line_no += 1
+                    elif token_type == 'COMMENT':
+                        str_lines = value.count('\n')
+                        if str_lines > 0:
+                            line_no += str_lines
                     # elif token_type == 'OPERATOR':
                     #     tokens.append((value, value, line_no))
                     else:
                         tokens.append((token_type, value, line_no))
-                        if token_type == 'COMMENT':
-                            str_lines = value.count('\n')
-                            if str_lines > 0:
-                                line_no += str_lines
-                        elif token_type in ['STRING_DATATYPE']:
+                        if token_type in ['STRING_DATATYPE']:
                             comment_lines = value.count('\\n')
                             if comment_lines > 0:
                                 line_no += comment_lines
